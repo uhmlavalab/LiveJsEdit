@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Live Js Edits</title>
+
+</head>
+
+
+
+
+
+<body onload='main()'>
+	<div id='topdiv'>
+
+		<input type='text' id='jsInput'>jsInput
+		<br>
+		<button onclick='editTheCode()'>Make Changes to mjfte</button>
+
+		<hr>
+
+		<button onclick='runCode()'>Run Code</button>
+		<div id='jsResult'></div>
+	</div>
+
+	<div id='scriptDiv'>
+		<script type="text/javascript">
+			function jsInDiv() {
+				return 'from the div/script in the body';
+			}
+		</script>
+	</div>
+	
+</body>
+
+
+
+
+
+
+<script id='myJs1' type="text/javascript">
+
+	
+	var runCode;
+	var createCounter = 0;
+	var uniqueDivId = 'udidcc' + createCounter;
+
+	var directReferenceTomjfte = document.getElementById('myJsFuncToEdit');
+
+	mtgCollectorProblem();
+
+	function main() {
+		runCode = function () {
+			console.log('Running code');
+			//fillJsResult(document.getElementById('myJs1').text);
+			//addJsResult( mjfte() );
+			fillJsResult(  mjfte() );
+			addJsResult( jsInDiv() );
+		}
+		//runCode();
+	}
+
+	function fillJsResult(string) {
+		document.getElementById('jsResult').innerHTML = string;
+	}
+	function addJsResult(string) {
+		document.getElementById('jsResult').innerHTML = document.getElementById('jsResult').innerHTML + "<br>" + string;
+	}
+
+	function editTheCode() {
+		console.log('attempting to make changes');
+		directReferenceTomjfte.innerHTML = ' function mjfte(){ return "changed"; } ';
+
+		var nsfdib = '<script type="text/javascript"> function jsInDiv() { return "edited"; }<';
+		nsfdib += '/script>';
+		document.getElementById('scriptDiv').innerHTML = nsfdib;
+
+		maybeAppendScript();
+		//noExistBeforeThis();
+	}
+
+	function maybeAppendScript() {
+		var scriptDiv = document.createElement('script');
+		scriptDiv.type = 'text/javascript';
+		scriptDiv.text = 'mjfte = function() { return "changed by script append"; } ;';
+		document.body.appendChild(scriptDiv);
+		document.body.removeChild(scriptDiv);
+	}
+
+
+
+</script>
+
+
+
+
+
+<script id='myJsFuncToEdit' type="text/javascript">
+	directReferenceTomjfte = document.getElementById('myJsFuncToEdit');
+	function mjfte() {
+		return 'original';
+	}
+	
+</script>
+
+
+
+
+
+</html>
+
+
+
+
+
+
